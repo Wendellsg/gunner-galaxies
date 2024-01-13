@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Score } from "../App";
+import { Score } from "../../old/src/App";
 import { colors } from "../constants/colors";
 
 export enum ParticleType {
@@ -360,11 +360,7 @@ export class Game {
   enemies: Enemy[] = [];
   particles: Particle[] = [];
   canvas: HTMLCanvasElement | null = null;
-  setGameScore: React.Dispatch<React.SetStateAction<Score[]>>;
-
-  constructor(setGameScore: React.Dispatch<React.SetStateAction<Score[]>>) {
-    this.setGameScore = setGameScore;
-  }
+  constructor() {}
 
   addPlayer(player: Player) {
     this.players.push(player);
@@ -382,7 +378,10 @@ export class Game {
     this.particles = this.particles.filter((p) => p !== particle);
   }
 
-  start(canvas: HTMLCanvasElement) {
+  start(
+    canvas: HTMLCanvasElement,
+    setGameScore: React.Dispatch<React.SetStateAction<Score[]>>
+  ) {
     this.canvas = canvas;
     const ctx = this.canvas.getContext("2d");
 
@@ -415,8 +414,8 @@ export class Game {
         particle.draw(ctx);
       });
 
-      this.checkCollision();
-      this.setGameScore((prevState) => {
+      this.checkCollision(setGameScore);
+      setGameScore((prevState) => {
         const newState = [...prevState];
 
         newState.forEach((s) => {
@@ -499,7 +498,7 @@ export class Game {
     }, 5000);
   }
 
-  checkCollision() {
+  checkCollision(setGameScore: React.Dispatch<React.SetStateAction<Score[]>>) {
     this.players.forEach((player) => {
       this.particles.forEach((particle) => {
         if (player.particles.includes(particle) || player === particle.source)
@@ -514,7 +513,7 @@ export class Game {
           if (particle.type === ParticleType.BULLET) {
             if (player.particles.length < 3) {
               this.removePlayer(player);
-              this.setGameScore((prevState) => {
+              setGameScore((prevState) => {
                 const newState = [...prevState];
                 const index = newState.findIndex((s) => s.id === player.id);
                 newState.splice(index, 1);
