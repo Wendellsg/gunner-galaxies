@@ -1,5 +1,5 @@
+import { Score } from "@/app/game/[id]/page";
 import { faker } from "@faker-js/faker";
-import { Score } from "../../old/src/App";
 import { colors } from "../constants/colors";
 
 export enum ParticleType {

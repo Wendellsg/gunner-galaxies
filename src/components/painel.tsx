@@ -1,7 +1,6 @@
 "use client";
+import { Score } from "@/app/game/[id]/page";
 import { useState } from "react";
-import { Score } from "../../old/src/App";
-
 export type GamePainelProps = {
   score: Score[];
 };
