@@ -15,9 +15,9 @@ export const GamePainel: React.FC<GamePainelProps> = ({ score }) => {
 
   return (
     <div className="cursor-default flex flex-col rounded-md border-rose-600 border-4 p-4 min-w-80 shadow-lg bg-black outline-offset-1 outline-4 outline-white">
-      <table className="w-full  select-none">
+      <table className="w-full select-none">
         <thead>
-          <tr className="">
+          <tr className="text-left">
             <th>Jogador</th>
             <th>Mortes</th>
             <th>Estrelas</th>
@@ -48,13 +48,13 @@ export const GamePainel: React.FC<GamePainelProps> = ({ score }) => {
 
           <div className="w-full flex gap-1 justify-center">
             <button
-              className="bg-slate-600 text-white font-bold w-full"
+              className="bg-slate-600 text-white font-bold w-full rounded-md p-2"
               onClick={handleRestart}
             >
               Confirmar
             </button>
             <button
-              className="bg-rose-600 text-white font-bold mr-4 w-full"
+              className="bg-rose-600 text-white font-bold mr-4 w-full rounded-md p-2"
               onClick={() => setConfirmRestart(false)}
             >
               Cancelar
@@ -63,7 +63,7 @@ export const GamePainel: React.FC<GamePainelProps> = ({ score }) => {
         </div>
       ) : (
         <button
-          className="bg-rose-600 text-white font-bold mt-auto"
+          className="bg-rose-600 text-white font-bold mt-auto rounded-md p-2"
           onClick={() => setConfirmRestart(true)}
         >
           Reiniciar

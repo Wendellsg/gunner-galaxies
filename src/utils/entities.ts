@@ -120,7 +120,7 @@ export class Player {
       x: 0,
       y: 0,
     };
-    this.speed = 2;
+    this.speed = 1;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -182,11 +182,11 @@ export class Player {
 
   activeBoost() {
     if (Date.now() - this.lastBoost < this.boostCooldown) return;
-    this.speed = 5;
+    this.speed = 2;
     this.lastBoost = Date.now();
 
     setTimeout(() => {
-      this.speed = 2;
+      this.speed = 1;
     }, this.boostDuration);
   }
 

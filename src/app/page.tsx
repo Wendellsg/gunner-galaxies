@@ -1,28 +1,14 @@
-import Link from "next/link";
+import { LoginCard } from "@/components/login";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex flex-col gap-4 w-80 mx-auto my-8">
-        <label htmlFor="name" className="w-full text-rose-600">
-          Seu nome
-        </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          className="border border-rose-600 rounded-md p-2"
-        />
-
-        <button className="bg-rose-600 text-white font-bold">
-          <Link href="/game/1">Start</Link>
-        </button>
-      </div>
+    <main className="flex flex-col items-center justify-center p-24">
+      <LoginCard />
 
       <br />
 
-      <h3 className="mt-16 text-2xl font-bold">Instruções</h3>
-      <p>
+      <h3 className="mt-8 text-2xl font-bold">Instruções</h3>
+      <p className="mt-4 text-center">
         Use <strong className="text-rose-600">WASD</strong> para se mover e{" "}
         <strong className="text-rose-600">Shift para correr</strong>
         <br />

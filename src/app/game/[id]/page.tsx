@@ -13,14 +13,6 @@ export type Score = {
   color: string;
 };
 
-const user = {
-  id: "1",
-  name: "Wendell",
-  score: 0,
-  particles: 0,
-  boost: false,
-  color: "white",
-};
 const game = new Game();
 
 export default function GamePage() {
@@ -44,7 +36,12 @@ export default function GamePage() {
       );
     });
 
-    if (!user.name) return;
+    const user = {
+      id: localStorage.getItem("galaxies@name"),
+      name: localStorage.getItem("galaxies@name"),
+    };
+
+    if (!user.name || !user.id) return;
 
     const player = new Player(
       user.id,
@@ -101,13 +98,13 @@ export default function GamePage() {
 
   return (
     <div
-      className="game-container mt-16"
+      className="mt-8 flex w-full gap-4 justify-center"
       style={{
         display: gameStarted ? "flex" : "none",
       }}
     >
       <canvas
-        className="mx-auto rounded-md overflow-auto cursor-none  border-rose-600 border-4 bg-transparent shadow-lg outline-offset-1 outline-4 outline-white"
+        className="rounded-md overflow-auto cursor-none  border-rose-600 border-4 bg-transparent shadow-lg outline-offset-1 outline-4 outline-white"
         ref={canvasRef}
         width={1280}
         height={720}
